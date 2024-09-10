@@ -395,8 +395,8 @@ The predicted Target class is for the following trading day.
 ![nvda](Graphs/nvda.png)
 
 
-Links to important files
-[Notebook](https://Files)
+Links to important files<br>
+[Notebook](https://Files)<br>
 
 
 Contact and Further Information<br>
