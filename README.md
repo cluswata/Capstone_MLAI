@@ -265,9 +265,12 @@ Summary of Results:
 - Logistic Regression performed well with reasonable accuracy and ROC-AUC scores but did not achieve the high performance of the ensemble methods.<br>
 
 Overall, Random Forest and Gradient Boosting were the top-performing models in terms of test accuracy and ROC-AUC scores, while Logistic Regression and KNN had lower performance metrics and were less effective at distinguishing between the classes. Gradient Boosting required the most computing resources.<br>
+
 Random Forest was selected for its outstanding performance, achieving a test accuracy of 88% and a top ROC-AUC score of 95%. It also had the advantage of requiring less than half the training time compared to Gradient Boosting. These metrics highlight its strong generalization to unseen data and its effectiveness in distinguishing between classes. The algorithm excels in capturing intricate relationships and interactions between features. Furthermore, it provides valuable insights into feature importance, making it a robust choice for practical machine learning applications, particularly when computational resources are available.<br>
 
+
 **FITTING THE SELECTED MODEL: RANDOM FOREST**<br>
+
 A random forest is essentially an ensemble of decision trees, each with slight variations. The concept behind random forests is that while individual trees might perform well in predicting outcomes, they are prone to overfitting the training data. By combining the predictions from multiple trees (100 in our case), the model mitigates overfitting through averaging, thereby enhancing overall performance (Müller and Guido, 2017).<br>
 
 Random Forest’s ability to handle complex, non-linear relationships, its robustness to overfitting and noise, and its provision of feature importance make it a powerful tool for stock market prediction. Its ensemble learning approach ensures stability and accuracy, which are crucial for making reliable predictions in the unpredictable and often volatile financial markets.<br>
@@ -309,6 +312,7 @@ weighted avg       0.88      0.88      0.88     12551
 The classification report indicated that the model performed well overall, with high precision, recall, and F1-scores for both classes. The accuracy of 88%, ROC-AUC score of 95% and balanced averages across metrics suggest that the model is effective at distinguishing between the classes and handles class imbalance well, making it a robust model for the given task.<br>
 
 **Visualizing a Sample of Individual Decision Trees (out of 100)**<br>
+
 **Tree 1**<br>
 
 ![individual_tree_1.png](Graphs/individual_tree_1.png.png)
@@ -323,6 +327,7 @@ The classification report indicated that the model performed well overall, with 
 
 
 **Complex interaction patterns analysis**<br>
+
 Decision Trees are adept at uncovering complex interaction patterns among features. These patterns can significantly enhance the performance of traditional linear and logistic regression models by revealing intricate relationships that linear models might overlook. This improvement in understanding can lead to increased predictive accuracy and robustness, ultimately enabling better generalization to new, unseen data.<br>
 
 Here is an example of how to interpret complex interaction patterns from various decision trees within the random forest:<br>
@@ -346,6 +351,7 @@ Here is an example of how to interpret complex interaction patterns from various
 
 The interactions are complex because they involve the interplay of multiple features to determine the final class, rather than the outcome being determined by a single feature in isolation.
 
+
 **Conclusion**<br>
 In summary, our analysis found that the Random Forest classifier outperformed the traditional Logistic Regression model and other machine learning techniques. It proved to be more efficient, utilizing less than half the computational resources required by Gradient Boosting, and achieved an accuracy rate of 88% in predicting the next day’s stock price movement. The study successfully identified key features influencing price action, such as support and resistance levels, price metrics (minimum, maximum, average prices over the past 30 days), the volatility index, moving averages, the timing of key economic reports (CPI, PCE, Jobs, and FOMC), the behavior of the S&P 500, and trading volume.
 According to the Efficient Market Hypothesis (EMH), financial markets are considered "informationally efficient," meaning asset prices reflect all available information—both public and private—at any given time. As our analysis is based on historical data, there is inherent risk involved, and financial losses can occur without proper research and risk management. Short-term investors and traders often seek to profit from market anomalies, misinterpreted information, and behavioral biases. Therefore, passively managed index funds are frequently recommended for those seeking to match market returns rather than exceed them.
@@ -362,7 +368,8 @@ Furthermore, continued research into complex feature interactions is crucial for
 - Goodfellow, I., Bengio, Y., & Courville, A. (2016). Deep Learning. MIT Press.
 - Han, J., Kamber, M., & Pei, J. (2011). Data Mining: Concepts and Techniques. Morgan Kaufmann.
 - Hochreiter, S., & Schmidhuber, J. (1997). Long short-term memory. Neural Computation, 9(8), 1735-1780.
-- Müller, Andreas C., and Sarah Guido. Introduction to Machine Learning with Python: A Guide for Data Scientists. O'Reilly Media, 2017.
+- Müller, Andreas C., and Sarah Guido. Introduction to Machine Learning with Python: A Guide for Data Scientists. O'Reilly Media, 2017.<br>
+
  
 **APPENDICES**<br>
 
