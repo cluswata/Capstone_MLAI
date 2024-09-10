@@ -252,31 +252,153 @@ Confusion Matrix (Test):
 
 
 Summary of Results:
-Model	              Train Time (s)	Train Accuracy	Test Accuracy	  ROC_AUC
- KNN	                7.45	          0.86	          0.73	          0.79
- Logistic Regression	13.56	          0.77	          0.77	          0.84
- Random Forest	      4162.79	        1.00	          0.88	          0.95
- Gradient Boosting	  10016.61	      1.00	          0.88	          0.95
+                 Model  Train Time  Train Accuracy  Test Accuracy  ROC_AUC
+0                  KNN        7.45            0.86           0.73     0.79
+1  Logistic Regression       13.56            0.77           0.77     0.84
+2        Random Forest     4162.79            1.00           0.88     0.95
+3    Gradient Boosting    10016.61            1.00           0.88     0.95
  ```
 
-**Interpretation:**
-•	Random Forest (RF) and Gradient Boosting (GB) had the highest test accuracy and ROC-AUC scores, indicating strong performance and the ability to distinguish between classes (Bulls vs Bears) effectively.<br>
-•	KNN showed a significant drop from training to test accuracy, suggesting overfitting.<br>
-•	Logistic Regression performed well with reasonable accuracy and ROC-AUC scores but did not achieve the high performance of the ensemble methods.<br>
+**Interpretation:**<br>
+- Random Forest (RF) and Gradient Boosting (GB) had the highest test accuracy and ROC-AUC scores, indicating strong performance and the ability to distinguish between classes (Bulls vs Bears) effectively.<br>
+- KNN showed a significant drop from training to test accuracy, suggesting overfitting.<br>
+- Logistic Regression performed well with reasonable accuracy and ROC-AUC scores but did not achieve the high performance of the ensemble methods.<br>
 
-Overall, Random Forest and Gradient Boosting were the top-performing models in terms of test accuracy and ROC-AUC scores, while Logistic Regression and KNN had lower performance metrics and were less effective at distinguishing between the classes. Gradient Boosting required the most computing resources.
-Random Forest was selected for its outstanding performance, achieving a test accuracy of 88% and a top ROC-AUC score of 95%. It also had the advantage of requiring less than half the training time compared to Gradient Boosting. These metrics highlight its strong generalization to unseen data and its effectiveness in distinguishing between classes. The algorithm excels in capturing intricate relationships and interactions between features. Furthermore, it provides valuable insights into feature importance, making it a robust choice for practical machine learning applications, particularly when computational resources are available.
+Overall, Random Forest and Gradient Boosting were the top-performing models in terms of test accuracy and ROC-AUC scores, while Logistic Regression and KNN had lower performance metrics and were less effective at distinguishing between the classes. Gradient Boosting required the most computing resources.<br>
+Random Forest was selected for its outstanding performance, achieving a test accuracy of 88% and a top ROC-AUC score of 95%. It also had the advantage of requiring less than half the training time compared to Gradient Boosting. These metrics highlight its strong generalization to unseen data and its effectiveness in distinguishing between classes. The algorithm excels in capturing intricate relationships and interactions between features. Furthermore, it provides valuable insights into feature importance, making it a robust choice for practical machine learning applications, particularly when computational resources are available.<br>
 
-**FITTING THE SELECTED MODEL: RANDOM FOREST**
-A random forest is essentially an ensemble of decision trees, each with slight variations. The concept behind random forests is that while individual trees might perform well in predicting outcomes, they are prone to overfitting the training data. By combining the predictions from multiple trees (100 in our case), the model mitigates overfitting through averaging, thereby enhancing overall performance (Müller and Guido, 2017).
+**FITTING THE SELECTED MODEL: RANDOM FOREST**<br>
+A random forest is essentially an ensemble of decision trees, each with slight variations. The concept behind random forests is that while individual trees might perform well in predicting outcomes, they are prone to overfitting the training data. By combining the predictions from multiple trees (100 in our case), the model mitigates overfitting through averaging, thereby enhancing overall performance (Müller and Guido, 2017).<br>
 
-Random Forest’s ability to handle complex, non-linear relationships, its robustness to overfitting and noise, and its provision of feature importance make it a powerful tool for stock market prediction. Its ensemble learning approach ensures stability and accuracy, which are crucial for making reliable predictions in the unpredictable and often volatile financial markets.
+Random Forest’s ability to handle complex, non-linear relationships, its robustness to overfitting and noise, and its provision of feature importance make it a powerful tool for stock market prediction. Its ensemble learning approach ensures stability and accuracy, which are crucial for making reliable predictions in the unpredictable and often volatile financial markets.<br>
 
-**Feature Importance**
+**Feature Importance**<br>
 The random forest provided feature importances, which are computed by aggregating the feature importances over the trees in the forest. <br>
 
 The most significant features identified by the Random Forest classifier include stock price support and resistance levels, price action metrics (such as minimum, maximum, and average prices over the past 30 days), the volatility index, moving averages, the number of days until key economic reports (CPI, PCE, Jobs, and FOMC), the behavior of the S&P 500, and trading volume.<br>
 
 ![feat_import](Graphs/feat_import.png)
+
+**Model Evaluation**
+ ```
+Classification Report (Training Set):
+              precision    recall  f1-score   support
+
+         0.0       1.00      1.00      1.00     20428
+         1.0       1.00      1.00      1.00     17225
+
+    accuracy                           1.00     37653
+   macro avg       1.00      1.00      1.00     37653
+weighted avg       1.00      1.00      1.00     37653
+
+
+Classification Report (Test Set):
+              precision    recall  f1-score   support
+
+         0.0       0.88      0.90      0.89      6827
+         1.0       0.87      0.86      0.86      5724
+
+    accuracy                           0.88     12551
+   macro avg       0.88      0.88      0.88     12551
+weighted avg       0.88      0.88      0.88     12551
+ ```
+
+![roc](Graphs/roc.png)
+
+
+The classification report indicated that the model performed well overall, with high precision, recall, and F1-scores for both classes. The accuracy of 88%, ROC-AUC score of 95% and balanced averages across metrics suggest that the model is effective at distinguishing between the classes and handles class imbalance well, making it a robust model for the given task.<br>
+
+**Visualizing a Sample of Individual Decision Trees (out of 100)**<br>
+**Tree 1**<br>
+
+![individual_tree_1.png](Graphs/individual_tree_1.png.png)
+
+**Tree 2**<br>
+
+![individual_tree_2.png](Graphs/individual_tree_2.png.png)
+
+**Tree 12**<br>
+
+![individual_tree_12.png](Graphs/individual_tree_12.png.png)
+
+
+**Complex interaction patterns analysis**<br>
+Decision Trees are adept at uncovering complex interaction patterns among features. These patterns can significantly enhance the performance of traditional linear and logistic regression models by revealing intricate relationships that linear models might overlook. This improvement in understanding can lead to increased predictive accuracy and robustness, ultimately enabling better generalization to new, unseen data.<br>
+
+Here is an example of how to interpret complex interaction patterns from various decision trees within the random forest:<br>
+
+**Tree 1**<br>
+- `pchg_px_min0` interacts with `pchg_ceil_max0` to determine the class (1 - Bullish or 0 - Bearish) for the next day. The interaction is further influenced by `SPY_ds_bull_Xv`.
+- `pchg_px_max0` interacts with `pchg_ceil_max0` to determine the class.
+- `pt_open_close` directly affects `days_since_sup_lt1` to determine the class when `pchg_ceil_max0 > 5.96`.
+- `pt_open_close` interacts with `pchg_res_max0` to determine the class outcome.
+
+**Tree 2**<br>
+- `pchg_px_avg0` and `pcnt_high_open`: When `pchg_px_avg0 ≤ 0.05`, `pcnt_high_open` does not influence the class outcome; the class is always 1.0 regardless of `pchg_floor_min0`.
+- `pcnt_high_open` and `days_since_mvavg_smashed`: When `pchg_px_avg0 ≤ 0.05`, `days_since_mvavg_smashed` impacts the class outcome; the class is 1.0 if `days_since_mvavg_smashed ≤ 24.50`, otherwise 0.0.
+- `pchg_px_avg0` and `days_to_cpi`: When `pchg_px_avg0 > 0.05`, `days_to_cpi` affects the class outcome based on `pchg_ceil_max0`; the class is 0.0 if `days_to_cpi ≤ 8.50` and `pchg_ceil_max0 ≤ 6.24`, otherwise 1.0 if `pchg_ceil_max0 > 6.24`.
+- `days_to_cpi` and `days_since_hvolbuy`: When `pchg_px_avg0 > 0.05` and `days_to_cpi > 8.50`, `days_since_hvolbuy` determines the class outcome; the class is consistently 0.0 regardless of `days_since_hvolbuy`.
+
+**Tree 12**<br>
+- `days_since_sup_lt1` and `pcnt_chg_n`: When `days_since_sup_lt1` is greater than 0.50, the class outcome depends on `pcnt_chg_n` and `days_since_hvolbuy`.
+- `pcnt_chg_n` and `pchg_res_max0`: When `days_since_sup_lt1` is greater than 0.50, if `pcnt_chg_n` is greater than -1.12, the class outcome depends on `pchg_res_max0`.
+
+
+The interactions are complex because they involve the interplay of multiple features to determine the final class, rather than the outcome being determined by a single feature in isolation.
+
+**Conclusion**<br>
+In summary, our analysis found that the Random Forest classifier outperformed the traditional Logistic Regression model and other machine learning techniques. It proved to be more efficient, utilizing less than half the computational resources required by Gradient Boosting, and achieved an accuracy rate of 88% in predicting the next day’s stock price movement. The study successfully identified key features influencing price action, such as support and resistance levels, price metrics (minimum, maximum, average prices over the past 30 days), the volatility index, moving averages, the timing of key economic reports (CPI, PCE, Jobs, and FOMC), the behavior of the S&P 500, and trading volume.
+According to the Efficient Market Hypothesis (EMH), financial markets are considered "informationally efficient," meaning asset prices reflect all available information—both public and private—at any given time. As our analysis is based on historical data, there is inherent risk involved, and financial losses can occur without proper research and risk management. Short-term investors and traders often seek to profit from market anomalies, misinterpreted information, and behavioral biases. Therefore, passively managed index funds are frequently recommended for those seeking to match market returns rather than exceed them.
+Furthermore, continued research into complex feature interactions is crucial for advancing predictive modeling and machine learning. By exploring how different features interact, researchers and practitioners can develop models that are not only more accurate but also more interpretable and applicable to real-world scenarios.
+
+**DISCLAIMER:** The results and conclusions drawn from this study are based on historical data and machine learning models. Past performance is not indicative of future results, and investing in financial markets carries risks. It is important to conduct thorough research and implement robust risk management strategies before making investment decisions.
+
+
+**References**<br>
+- Breiman, L. (2001). Random forests. Machine Learning, 45(1), 5-32.
+- Chen, T., & Guestrin, C. (2016). XGBoost: A scalable tree boosting system. Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, 785-794.
+- Cover, T., & Hart, P. (1967). Nearest neighbor pattern classification. IEEE Transactions on Information Theory, 13(1), 21-27.
+- Friedman, J. H. (2001). Greedy function approximation: A gradient boosting machine. The Annals of Statistics, 29(5), 1189-1232.
+- Goodfellow, I., Bengio, Y., & Courville, A. (2016). Deep Learning. MIT Press.
+- Han, J., Kamber, M., & Pei, J. (2011). Data Mining: Concepts and Techniques. Morgan Kaufmann.
+- Hochreiter, S., & Schmidhuber, J. (1997). Long short-term memory. Neural Computation, 9(8), 1735-1780.
+- Müller, Andreas C., and Sarah Guido. Introduction to Machine Learning with Python: A Guide for Data Scientists. O'Reilly Media, 2017.
+ 
+**APPENDICES**<br>
+
+![LINE_PLOT_CYCLES](Graphs/LINE_PLOT_CYCLES.png)
+
+
+![LINE_PLOT_DOMTH](Graphs/LINE_PLOT_DOMTH.png)
+
+![CLASS_COUNTS](Graphs/CLASS_COUNTS.png)
+
+![HEATMAP](Graphs/HEATMAP.png)
+
+
+**Predictions based on Random Forest Classifier**<br>
+Machine learning and AI are often described as a "black box" because many algorithms function in ways that make it hard to grasp how they reach their decisions or predictions.
+
+The predicted Target class is for the following trading day.
+
+![spy](Graphs/spy.png)
+
+![smci](Graphs/smci.png)
+
+![nvda](Graphs/nvda.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
