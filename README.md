@@ -396,7 +396,9 @@ The predicted Target class is for the following trading day.
 
 
 Links to important files<br>
-[Notebook](https://Files)<br>
+[Graphs Folder](Graphs/)<br>
+[Notebook Folder](Files/)<br>
+
 
 
 Contact and Further Information<br>
