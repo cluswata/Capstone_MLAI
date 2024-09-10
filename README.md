@@ -395,8 +395,11 @@ The predicted Target class is for the following trading day.
 ![nvda](Graphs/nvda.png)
 
 
+Contact and Further Information<br>
 
-
+Charles Luswata<br>
+Email: cluswata@gmail.com<br>
+[LinkedIn](https://www.linkedin.com/in/charles-luswata-m-s-0838501b/)
 
 
 
