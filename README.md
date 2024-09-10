@@ -277,3 +277,6 @@ The random forest provided feature importances, which are computed by aggregatin
 
 The most significant features identified by the Random Forest classifier include stock price support and resistance levels, price action metrics (such as minimum, maximum, and average prices over the past 30 days), the volatility index, moving averages, the number of days until key economic reports (CPI, PCE, Jobs, and FOMC), the behavior of the S&P 500, and trading volume.<br>
 
+![feat_import](Graphs/feat_import.png)
+
+
